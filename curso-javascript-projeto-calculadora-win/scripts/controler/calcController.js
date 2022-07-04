@@ -64,15 +64,19 @@ class calcController {
             case "X":
                 this.operation('*')
             break
+
             case "-":
                 this.operation('-')
             break
+
             case "+":
                 this.operation('+')
             break
+
             case "÷":
                 this.operation('/')
             break
+
             case "%":
                 this.operation('%')
             break
@@ -93,35 +97,36 @@ class calcController {
     }
 
     operation(value) {
+        console.log(isNaN(value))
 
         if (isNaN(value)) {
             
-            if (!this.isAnOperator(value)) {
+            if (this.isAnOperator(value)) {
                 this._thisOperation.push(value)
                 console.log('operador => ', value, 'array => ', this._thisOperation)
             } else {
-                console.log('deu ruim')
+                console.log('qualquer coisa')
             }
 
         } else {
-            console.log(value)
 
             const last = this._thisOperation.pop()
-            console.log('valor do last', last)
 
-            if (last != undefined) {
+            if (last != undefined ) {
                 this._thisOperation = [last + value]
-                console.log('array => ',this._thisOperation)
 
             } else {              
-                this._thisOperation.push(value)
-                console.log(this._thisOperation)      
-            }                          
+                this._thisOperation.push(value) 
+            }
+
+                                              
+        
+            console.log(this._thisOperation)
         }
     }
 
     isAnOperator(value) {
-        if (['+','-','*','/','%'].indexOf(value) > -1) true
+        if (['+','-','*','/','%',].indexOf(value) > -1) return true
     }
 
     get displayCalc () {
